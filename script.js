@@ -28,12 +28,9 @@ const game = () => {
   let winner = null;
 
   const updateMoveText = () => {
-    if (currentSymbol === 'O') {
-      move.style.color = 'rgb(140, 199, 255)';
-    } else {
-      move.style.color = 'rgb(255, 84, 84)';
-    }
-
+    currentSymbol === 'O'
+      ? (move.style.color = 'rgb(140, 199, 255)')
+      : (move.style.color = 'rgb(255, 84, 84)');
     move.innerHTML = currentSymbol;
   };
 
@@ -57,17 +54,12 @@ const game = () => {
   const resetGame = () => {
     cover.classList.remove('active');
     winnerHeading.classList.remove('active');
-
     winnerText.innerHTML = '';
-
     currentSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-    performedMoves = performedMoves.map(element => (element = null));
+    performedMoves = Array(9).fill(null);
     winner = null;
 
-    tiles.forEach(tile => {
-      tile.querySelector('.symbol').innerHTML = '';
-    });
-
+    tiles.forEach(tile => (tile.querySelector('.symbol').innerHTML = ''));
     updateMoveText();
   };
 
@@ -81,7 +73,7 @@ const game = () => {
 
   tiles.forEach(tile => {
     tile.addEventListener('click', () => {
-      if (performedMoves[tile.id] == null) {
+      if (performedMoves[tile.id] === null) {
         const tileSpan = tile.querySelector('.symbol');
 
         if (currentSymbol === 'O') {

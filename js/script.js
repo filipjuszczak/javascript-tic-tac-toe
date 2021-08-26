@@ -1,6 +1,6 @@
 'use strict';
 
-const game = () => {
+const game = function () {
   const tiles = document.querySelectorAll('.tile');
   const move = document.querySelector('.move');
   const cover = document.querySelector('.cover');
@@ -27,7 +27,7 @@ const game = () => {
   ];
   let winner = null;
 
-  const updateMoveText = () => {
+  const updateMoveText = function () {
     currentSymbol === 'O'
       ? (move.style.color = 'rgb(140, 199, 255)')
       : (move.style.color = 'rgb(255, 84, 84)');
@@ -36,7 +36,7 @@ const game = () => {
 
   updateMoveText();
 
-  const checkWin = () => {
+  const checkWin = function () {
     for (let i = 0; i < winningPossibilities.length; i++) {
       const [a, b, c] = winningPossibilities[i];
 
@@ -51,7 +51,7 @@ const game = () => {
     return false;
   };
 
-  const resetGame = () => {
+  const resetGame = function () {
     cover.classList.remove('active');
     winnerHeading.classList.remove('active');
     winnerText.innerHTML = '';
@@ -63,7 +63,7 @@ const game = () => {
     updateMoveText();
   };
 
-  const showWinner = () => {
+  const showWinner = function () {
     cover.classList.add('active');
     winnerHeading.classList.add('active');
     winnerHeading.innerHTML = winner;
@@ -108,4 +108,5 @@ const game = () => {
     });
   });
 };
+
 game();
